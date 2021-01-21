@@ -1,17 +1,17 @@
 /*
  * @Author: your name
  * @Date: 2020-12-26 10:01:22
- * @LastEditTime: 2021-01-20 21:34:52
+ * @LastEditTime: 2021-01-21 21:00:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \my_express\app.js
  */
+require('./db')
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login')
