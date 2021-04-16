@@ -11,8 +11,10 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "minio": "^7.0.18",
     "mongoose": "^5.11.13",
     "morgan": "~1.9.1",
+    "multiparty": "^4.2.2",
     "request": "^2.88.2"
   }
 }

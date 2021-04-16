@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-26 10:01:22
- * @LastEditTime: 2021-01-21 21:00:02
+ * @LastEditTime: 2021-04-16 15:59:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \my_express\app.js
@@ -15,8 +15,18 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login')
+var minioRouter = require('./routes/minio')
 var app = express();
 
+var allowCrossDomain = function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Credentials','true');
+  next();
+};
+
+app.use(allowCrossDomain)
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -32,6 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
+app.use('/minio', minioRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
