@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-04-16 14:55:54
- * @LastEditTime: 2021-04-16 17:03:36
+ * @LastEditTime: 2021-04-19 15:50:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my_express/routes/minio.js
@@ -29,7 +29,7 @@ function initMinio(fileName,fileUrl) {
         accessKey: 'minioadmin',
         secretKey: 'minioadmin'
     })
-    minioClient.fPutObject('ftzart-test', fileName, fileUrl, {
+    minioClient.fPutObject('sdwl', fileName, fileUrl, {
         'Content-Type': 'application/octet-stream',
         'X-Amz-Meta-Testing': 1234,
         'example': 5678
