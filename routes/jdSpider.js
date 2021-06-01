@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-31 10:58:01
- * @LastEditTime: 2021-06-01 17:43:41
+ * @LastEditTime: 2021-06-01 17:47:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my_express/routes/bigFileUpload.js
@@ -51,9 +51,9 @@ router.get('/', function (req, res, next) {
                     Contact
                 </div>
             </div>`)
-    let photoTag = $('.title_zh')
-    console.log(photoTag)
-    res.send(body.toString())
+    let photoTag = $('.home_container')
+    console.log(photoTag,'had',photoTag.text())
+    res.send($.html())
 });
 
 module.exports = router;
