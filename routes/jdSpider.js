@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-31 10:58:01
- * @LastEditTime: 2021-06-01 17:27:31
+ * @LastEditTime: 2021-06-01 17:43:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my_express/routes/bigFileUpload.js
@@ -29,13 +29,31 @@ function spider(req, res) {
         encoding: null,
     }, (err, res1, body) => {
         const $ = cheerio.load(body)
-        let photoTag = $('body')
-        console.log(photoTag.text(), photoTag,$)
-        res.send(photoTag.text())
+        let photoTag = $('div.wx_wrap > div > div > div:nth-child(3) > div > ul > li > div.product_info > span')
+        console.log(photoTag)
+        res.send(body.toString())
     })
 }
 router.get('/', function (req, res, next) {
-    spider(req, res)
+    // spider(req, res)
+    const $ = cheerio.load(`
+    <div className="home_container">
+                <div className="container_title">
+                    <div className="title_zh">个人网站</div>
+                    <div className="title_en">Personal Website</div>
+                </div>
+                <ul className="container_main">
+                    <li className="main_item"><Link to='/' >技术文章</Link></li>
+                    <li className="main_item"><Link to='/' >文档中心</Link></li>
+                    <li className="main_item"><Link to='/' >更新日志</Link></li>
+                </ul>
+                <div className="container_footer">
+                    Contact
+                </div>
+            </div>`)
+    let photoTag = $('.title_zh')
+    console.log(photoTag)
+    res.send(body.toString())
 });
 
 module.exports = router;
