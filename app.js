@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-26 10:01:22
- * @LastEditTime: 2021-05-31 14:55:42
+ * @LastEditTime: 2021-06-01 16:21:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \my_express\app.js
@@ -17,6 +17,7 @@ var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login')
 var minioRouter = require('./routes/minio')
 var bigFileUploadRouter = require('./routes/bigFileUpload')
+var jdSpider = require('./routes/jdSpider')
 var app = express();
 
 var allowCrossDomain = function (req, res, next) {
@@ -45,6 +46,7 @@ app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/minio', minioRouter)
 app.use('/bigFile', bigFileUploadRouter)
+app.use('/jdSpider', jdSpider)
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
