@@ -18,15 +18,10 @@ var loginRouter = require('./routes/login')
 var minioRouter = require('./routes/minio')
 var bigFileUploadRouter = require('./routes/bigFileUpload')
 var jdSpider = require('./routes/jdSpider')
+var hash=require('pbkdf2-password')
+var session=require('express-session')
+var cors=require('cors')
 var app = express();
-
-var allowCrossDomain = function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  res.header('Access-Control-Allow-Credentials', 'true');
-  next();
-};
 
 // app.use(allowCrossDomain)
 // view engine setup
@@ -38,8 +33,22 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: false
 }));
+app.use(cors())
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret:'secret',
+  resave:true,
+  saveUninitialized:false,
+  cookie:{
+    maxAge:1000*60*3
+  }
+}))
+
+app.use(function(req,res,next){
+  console.log(req.session,'eee')
+  next()
+})
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -51,9 +60,8 @@ app.use('/jdSpider', jdSpider)
 app.use(function (req, res, next) {
   next(createError(404));
 });
-
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res, next) {    
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

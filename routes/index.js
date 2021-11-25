@@ -8,15 +8,22 @@
  */
 var express = require('express');
 var request = require('request')
+var session=require('express-session')
 var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  request('https://static1.34580.cn/topics2/sz/956485edea7d1f90855b1009b9d8c7e2/1.json', (err,res,body) => {
-    console.log(res, 'res')
-  })
+  req.session.userInfo='zzj'
+
   res.render('index', {
-    title: 'Express'
+    title: 'xiaoaiaaa'
+  });
+});
+
+router.get('/ddd', function (req, res, next) {
+  
+  res.render('index', {
+    title: req.session.userInfo
   });
 });
 
