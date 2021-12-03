@@ -20,7 +20,8 @@
     "multiparty": "^4.2.2",
     "mysql": "^2.18.1",
     "pbkdf2-password": "^1.2.1",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "shortid": "^2.2.16"
   },
   "devDependencies": {
     "nodemon": "^2.0.10"
