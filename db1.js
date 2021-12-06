@@ -15,9 +15,9 @@ module.exports={      //导出对象
     config:{
         host:`localhost`, //主机名
         user:'root',      //用户名
-        password:`password`,   //密码
+        password:`123456`,   //密码
         port:3306,        //端口号 
-        database:`zzj`, //数据库
+        database:`car`, //数据库
         multipleStatements:true  //使允许用多条sql
     },
 
